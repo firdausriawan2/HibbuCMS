@@ -18,7 +18,7 @@ class HandleInertiaRequests extends Middleware
     public function rootView(Request $request)
     {
         if ($request->is(['admin', 'admin/*'])) {
-            return 'stisla';
+            return 'layouts.admin';
         }
 
         return 'app';

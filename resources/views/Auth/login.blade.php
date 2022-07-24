@@ -86,12 +86,7 @@
                         </form>
 
                         <div class="text-center mt-5 text-small">
-                            Copyright &copy; Muhammad Firdaus Riawan
-                            <div class="mt-2">
-                                <a href="#">Privacy Policy</a>
-                                <div class="bullet"></div>
-                                <a href="#">Terms of Service</a>
-                            </div>
+                            Copyright &copy; Muhammad Firdaus Riawan 2022
                         </div>
                     </div>
                 </div>

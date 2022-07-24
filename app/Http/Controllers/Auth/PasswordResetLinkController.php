@@ -21,7 +21,7 @@ class PasswordResetLinkController extends Controller
         //     'status' => session('status'),
         // ]);
 
-        return view('Auth.passwords.email', [
+        return view('Auth.passwords.ForgotPassword', [
             'status' => session('status'),
         ]);
     }
