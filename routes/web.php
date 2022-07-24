@@ -34,8 +34,19 @@ Route::get('/', function () {
 // });
 
 
-Route::get('/admin/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+ /*
+|--------------------------------------------------------------------------
+| BackEnd routes
+|--------------------------------------------------------------------------
+|
+| Disini tempat untuk mendaftarkan rute untuk backend.
+|
+*/
+
+Route::get('/admin/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
+
+Route::get('/admin/posts', [\App\Http\Controllers\Admin\PostController::class, 'index'])->name('admin.posts.index');
+
 
 require __DIR__.'/auth.php';
+
