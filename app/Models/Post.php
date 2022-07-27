@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
     protected $fillable = [
         'title',
         'slug',
@@ -19,6 +20,14 @@ class Post extends Model
         'status'
     ];
 
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
     /**
      * Eloquent Relationalship
      */
@@ -27,8 +36,13 @@ class Post extends Model
         return $this->belongsTo(User::class, 'author');
     }
 
+    // public function categories()
+    // {
+    //     return $this->belongsTo(Category::class, 'category');
+    // }
+
     public function categories()
     {
-        return $this->belongsTo(Category::class, 'category');
+        return $this->belongsToMany(Category::class);
     }
 }

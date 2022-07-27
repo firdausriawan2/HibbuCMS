@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->timestamps();
         });
+
     }
 
     /**

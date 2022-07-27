@@ -12,12 +12,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-    <!-- CSS Libraries -->
-    <link rel="stylesheet" href="{{ asset('BackEnd/node_modules/jqvmap/dist/jqvmap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('BackEnd/node_modules/weathericons/css/weather-icons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('BackEnd/node_modules/weathericons/css/weather-icons-wind.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('BackEnd/node_modules/summernote/dist/summernote-bs4.css') }}">
-
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('BackEnd/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('BackEnd/assets/css/components.css') }}">
@@ -176,18 +170,17 @@
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">Dashboard</li>
-                        <li class="nav-item active">
-                            <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                        <li class="nav-item @if(request()->routeIs('admin.dashboard')) active @else '' @endif">
+                            <a href="{{ route('admin.dashboard') }}" class="nav-link @if(request()->routeIs('admin.posts.index')) active @else '' @endif"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                         </li>
                         <li class="menu-header">Manage Content</li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown @if(request()->routeIs('admin.posts.*')) active @else '' @endif">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-newspaper"></i> <span>Posts</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="{{ route('admin.posts.index') }}">All Posts</a></li>
-                                <li><a class="nav-link" href="layout-transparent.html">Add New Posts</a></li>
+                                <li class="@if(request()->routeIs('admin.posts.index')) active @else '' @endif"><a class="nav-link" href="{{ route('admin.posts.index') }}">All Posts</a></li>
+                                <li class="@if(request()->routeIs('admin.posts.create')) active @else '' @endif"><a class="nav-link" href="{{ route('admin.posts.create') }}">Add New Posts</a></li>
                                 <li><a class="nav-link" href="layout-top-navigation.html">Categories</a></li>
-                                <li><a class="nav-link" href="layout-top-navigation.html">Tags</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -235,14 +228,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="{{ asset('BackEnd/assets/js/stisla.js') }}"></script>
-
-    <!-- JS Libraies -->
-    <script src="{{ asset('BackEnd/node_modules/simpleweather/jquery.simpleWeather.min.js') }}"></script>
-    <script src="{{ asset('BackEnd/node_modules/chart.js/dist/Chart.min.js') }}"></script>
-    <script src="{{ asset('BackEnd/node_modules/jqvmap/dist/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('BackEnd/node_modules/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
-    <script src="{{ asset('BackEnd/node_modules/summernote/dist/summernote-bs4.js') }}"></script>
-    <script src="{{ asset('BackEnd/node_modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 
     <!-- Template JS File -->
     <script src="{{ asset('BackEnd/assets/js/scripts.js') }}"></script>
