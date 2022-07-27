@@ -18,7 +18,32 @@
                 <p class="section-lead">
                     You can manage all posts, such as editing, deleting and more.
                 </p>
-
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mb-0">
+                            <div class="card-body">
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#">All <span
+                                                class="badge badge-white">{{ $posts->count() }}</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('admin.posts.index') }}">Draft <span
+                                                class="badge badge-primary">{{ $posts->where('status', '==', 'Draft')->count() }}</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Pending <span
+                                                class="badge badge-primary">{{ $posts->where('status', '==', 'Pending')->count() }}</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Trash <span
+                                                class="badge badge-primary">0</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
