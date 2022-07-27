@@ -185,6 +185,13 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                                    class="fas fa-trash"></i> <span>Trash</span></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="nav-link" href="layout-default.html">Posts</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-columns"></i> <span>Layout</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>

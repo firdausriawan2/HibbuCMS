@@ -20,32 +20,6 @@
                 </p>
                 <div class="row">
                     <div class="col-12">
-                        <div class="card mb-0">
-                            <div class="card-body">
-                                <ul class="nav nav-pills">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="#">All <span
-                                                class="badge badge-white">{{ $posts->count() }}</span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('admin.posts.index') }}">Draft <span
-                                                class="badge badge-primary">{{ $posts->where('status', '==', 'Draft')->count() }}</span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Pending <span
-                                                class="badge badge-primary">{{ $posts->where('status', '==', 'Pending')->count() }}</span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Trash <span
-                                                class="badge badge-primary">0</span></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
                         <div class="card">
                             <div class="card-header">
                                 <h4>All Posts</h4>
@@ -84,11 +58,18 @@
                                                     </td>
                                                     <td>{{ $post->title }}
                                                         <div class="table-links">
-                                                            <a href="#">View</a>
-                                                            <div class="bullet"></div>
-                                                            <a href="#">Edit</a>
-                                                            <div class="bullet"></div>
-                                                            <a href="#" class="text-danger">Trash</a>
+                                                            <form id="form1" method="POST"
+                                                                onsubmit="return confirm('Move data to trash?')"
+                                                                action="{{ route('admin.posts.destroy', [$post->id]) }} ">
+                                                                <a href="#">View</a>
+                                                                <div class="bullet"></div>
+                                                                <a href="#">Edit</a>
+                                                                <div class="bullet"></div>
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <a class="text-danger" href="javascript:;"
+                                                                    onclick="document.getElementById('form1').submit();">Trash</a>
+                                                            </form>
                                                         </div>
                                                     </td>
                                                     <td>
@@ -108,14 +89,17 @@
                                                     </td>
                                                     <td>{{ $post->created_at->format('Y-m-d') }}</td>
                                                     <td>
-                                                        @if ($post->status == 'Published')
-                                                            <div class="badge badge-primary">{{ $post->status }}</div>
-                                                        @elseif ($post->status == 'Pending')
-                                                            <div class="badge badge-warning">{{ $post->status }}</div>
-                                                        @elseif ($post->status == 'Draft')
-                                                            <div class="badge badge-secondary">{{ $post->status }}</div>
+                                                        @if ($post->deleted_at == null)
+                                                            @if ($post->status == 'Published')
+                                                                <div class="badge badge-primary">{{ $post->status }}</div>
+                                                            @elseif ($post->status == 'Pending')
+                                                                <div class="badge badge-warning">{{ $post->status }}</div>
+                                                            @elseif ($post->status == 'Draft')
+                                                                <div class="badge badge-secondary">{{ $post->status }}
+                                                                </div>
+                                                            @endif
                                                         @else
-                                                            <div class="badge badge-danger">{{ $post->status }}</div>
+                                                            <div class="badge badge-danger">Trash</div>
                                                         @endif
                                                     </td>
                                                 </tr>

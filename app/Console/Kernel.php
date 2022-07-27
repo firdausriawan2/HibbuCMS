@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Models\Post;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -16,6 +17,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            $posts = Post::whereNotNull('deleted_at')->where(
+                'deleted_at', '<=', now()->subDays(30)->toDateTimeString()
+            )->get();
+
+            $posts->each->forceDelete();
+        })->daily();
     }
 
     /**

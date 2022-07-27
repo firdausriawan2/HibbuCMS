@@ -20,8 +20,9 @@ return new class extends Migration
             $table->longText('content');
             $table->string('thumbnail');
             $table->foreignId('author');
-            $table->enum('status',['Published', 'Draft', 'Pending', 'Trash']);
+            $table->enum('status',['Published', 'Draft', 'Pending']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

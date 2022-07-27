@@ -30,8 +30,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::orderBy('id','DESC')->get();
-        // $posts = Post::orderBy('id', 'DESC')->paginate(10);
+        $posts = Post::orderBy('id', 'DESC')->get();
         return view('admin.posts.index', [
             'posts' => $posts
         ]);
@@ -39,7 +38,7 @@ class PostController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('id', 'DESC')->get();
         return view('admin.posts.create', [
             'categories' => $categories,
         ]);
@@ -92,5 +91,23 @@ class PostController extends Controller
 
             return redirect()->route('admin.posts.index')->with(['error' => 'Post gagal ditambahkan!']);
         }
+    }
+
+    public function edit($id)
+    {
+        $posts = Post::findOrFail($id);
+        $categories = Category::orderBy('id', 'DESC')->get();
+        return view('admin.posts.edit', [
+            'posts' => $posts,
+            'categories' => $categories,
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $posts = Post::findOrFail($id);
+        $posts->delete();
+
+        return redirect()->route('admin.posts.index');
     }
 }

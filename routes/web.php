@@ -49,6 +49,7 @@ Route::get('/admin/dashboard', [\App\Http\Controllers\Admin\DashboardController:
 Route::get('/admin/posts', [\App\Http\Controllers\Admin\PostController::class, 'index'])->name('admin.posts.index');
 Route::get('/admin/posts/create', [\App\Http\Controllers\Admin\PostController::class, 'create'])->name('admin.posts.create');
 Route::post('/admin/posts/create', [\App\Http\Controllers\Admin\PostController::class, 'store'])->name('admin.posts.store');
+Route::delete('/admin/posts/{id}/destroy', [\App\Http\Controllers\Admin\PostController::class, 'destroy'])->name('admin.posts.destroy');
 
 
 require __DIR__.'/auth.php';
